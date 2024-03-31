@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 "use client";
-import { useRouter } from "next/navigation";
 import React, { type InputHTMLAttributes } from "react";
 import {
   useForm,
@@ -44,16 +43,16 @@ const Input = ({
 );
 
 const CreateForm = () => {
-  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<Inputs>();
 
   const { mutate } = api.stats.create.useMutation({
     onSuccess: () => {
-      router.refresh();
+      reset();
     },
   });
 
