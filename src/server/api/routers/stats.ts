@@ -4,14 +4,6 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { stats } from "~/server/db/schema";
 
 export const retireRouter = createTRPCRouter({
-  hello: publicProcedure
-    .input(z.object({ text: z.string() }))
-    .query(({ input }) => {
-      return {
-        greeting: `Hello ${input.text}`,
-      };
-    }),
-
   create: publicProcedure
     .input(
       z.object({

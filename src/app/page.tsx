@@ -1,4 +1,3 @@
-import { api } from "~/trpc/server";
 import DashboardTable from "./_components/DashboardTable";
 
 export default async function Home() {

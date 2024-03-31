@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 "use client";
+import { useRouter } from "next/navigation";
 import React, { type InputHTMLAttributes } from "react";
 import {
   useForm,
@@ -7,6 +8,7 @@ import {
   type FieldErrors,
   type UseFormRegister,
 } from "react-hook-form";
+import { api } from "~/trpc/react";
 
 interface Inputs {
   retire: number;
@@ -42,14 +44,21 @@ const Input = ({
 );
 
 const CreateForm = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
 
+  const { mutate } = api.stats.create.useMutation({
+    onSuccess: () => {
+      router.refresh();
+    },
+  });
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+    mutate(data);
   };
 
   return (
