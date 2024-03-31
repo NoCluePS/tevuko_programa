@@ -26,10 +26,12 @@ export const retireRouter = createTRPCRouter({
   }),
 
   getLatest: publicProcedure.query(async ({ ctx }) => {
-    return await ctx.db
+    const data = await ctx.db
       .select()
       .from(stats)
       .orderBy(desc(stats.createdAt))
       .limit(1);
+    
+    return data[0];
   }),
 });
