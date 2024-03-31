@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 "use client";
-import React, { InputHTMLAttributes } from "react";
-import { useForm, SubmitHandler, FieldErrors } from "react-hook-form";
+import React, { type InputHTMLAttributes } from "react";
+import {
+  useForm,
+  type SubmitHandler,
+  type FieldErrors,
+  type UseFormRegister,
+} from "react-hook-form";
 
 interface Inputs {
   retire: number;
@@ -11,7 +16,7 @@ interface Inputs {
 
 interface InputProps {
   label: string;
-  register: any;
+  register: UseFormRegister<Inputs>;
   required: boolean;
   name: keyof Inputs;
   errors: FieldErrors<Inputs>;
