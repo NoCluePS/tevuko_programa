@@ -11,9 +11,9 @@ import {
 import { api } from "~/trpc/react";
 
 interface Inputs {
-  retire: number;
-  pijus: number;
-  elze: number;
+  retire: string;
+  pijus: string;
+  elze: string;
 }
 
 interface InputProps {

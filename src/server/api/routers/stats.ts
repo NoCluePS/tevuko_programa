@@ -7,9 +7,9 @@ export const retireRouter = createTRPCRouter({
   create: publicProcedure
     .input(
       z.object({
-        retire: z.number(),
-        pijus: z.number(),
-        elze: z.number(),
+        retire: z.string().regex(/^[0-9]*$/g, "NUMBER_ONLY"),
+        pijus: z.string().regex(/^[0-9]*$/g, "NUMBER_ONLY"),
+        elze: z.string().regex(/^[0-9]*$/g, "NUMBER_ONLY"),
       }),
     )
     .mutation(async ({ ctx, input: { retire, pijus, elze } }) => {

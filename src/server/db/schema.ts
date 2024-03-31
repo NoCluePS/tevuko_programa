@@ -7,6 +7,7 @@ import {
   index,
   mysqlTableCreator,
   timestamp,
+  varchar,
 } from "drizzle-orm/mysql-core";
 
 /**
@@ -23,9 +24,15 @@ export const stats = createTable(
   "stats",
   {
     id: bigint("id", { mode: "number" }).primaryKey().autoincrement(),
-    retire: bigint("retire_number", { mode: "number" }).notNull(),
-    pijus: bigint("pijus", { mode: "number" }).notNull(),
-    elze: bigint("elze", { mode: "number" }).notNull(),
+    retire: varchar("retire_number", {
+      length: 255,
+    }).notNull(),
+    pijus: varchar("pijus", {
+      length: 255,
+    }).notNull(),
+    elze: varchar("elze", {
+      length: 255,
+    }).notNull(),
     createdAt: timestamp("created_at")
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
