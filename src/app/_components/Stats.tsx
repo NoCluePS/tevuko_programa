@@ -1,7 +1,7 @@
 import React from "react";
 import { api } from "~/trpc/react";
 
-const StatsTable = () => {
+const Stats = () => {
   const { data } = api.stats.getLatest.useQuery();
 
   return (
@@ -12,4 +12,4 @@ const StatsTable = () => {
   );
 };
 
-export default StatsTable;
+export default Stats;
