@@ -7,7 +7,6 @@ import {
   index,
   mysqlTableCreator,
   timestamp,
-  varchar,
 } from "drizzle-orm/mysql-core";
 
 /**
@@ -16,19 +15,23 @@ import {
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const createTable = mysqlTableCreator((name) => `tevuko_programa_${name}`);
+export const createTable = mysqlTableCreator(
+  (name) => `tevuko_programa_${name}`,
+);
 
-export const posts = createTable(
-  "post",
+export const stats = createTable(
+  "stats",
   {
     id: bigint("id", { mode: "number" }).primaryKey().autoincrement(),
-    name: varchar("name", { length: 256 }),
+    retire: bigint("retire_number", { mode: "number" }).notNull(),
+    pijus: bigint("pijus", { mode: "number" }).notNull(),
+    elze: bigint("elze", { mode: "number" }).notNull(),
     createdAt: timestamp("created_at")
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
     updatedAt: timestamp("updatedAt").onUpdateNow(),
   },
   (example) => ({
-    nameIndex: index("name_idx").on(example.name),
-  })
+    nameIndex: index("name_idx").on(example.retire),
+  }),
 );
