@@ -22,7 +22,7 @@ export const retireRouter = createTRPCRouter({
     }),
 
   getAll: publicProcedure.query(async ({ ctx }) => {
-    return await ctx.db.select().from(stats);
+    return await ctx.db.select().from(stats).orderBy(desc(stats.createdAt));
   }),
 
   getLatest: publicProcedure.query(async ({ ctx }) => {
