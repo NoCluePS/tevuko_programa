@@ -12,12 +12,14 @@ const Stats = () => {
 
   if (isLoading) return <div>Kraunama...</div>;
 
+  if (!latestData) return null;
+
   const formattedData = {
     labels: ["Pensija", "Elze", "Pijus"],
     datasets: [
       {
         label: "€",
-        data: [latestData!.retire, latestData!.elze, latestData!.pijus],
+        data: [latestData.retire, latestData.elze, latestData.pijus],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -38,9 +40,9 @@ const Stats = () => {
       <div className="flex flex-1 flex-col items-center justify-center rounded-md p-3 text-xl shadow-lg">
         Bendros santaupos
         <span className="mt-[8px] text-3xl text-green-500">
-          {new Decimal(latestData!.retire)
-            .add(new Decimal(latestData!.pijus))
-            .add(new Decimal(latestData!.elze))
+          {new Decimal(latestData.retire)
+            .add(new Decimal(latestData.pijus))
+            .add(new Decimal(latestData.elze))
             .toString()}{" "}
           €
         </span>
