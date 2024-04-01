@@ -70,7 +70,7 @@ const Stats = () => {
           <span
             className={`mt-[8px] text-3xl ${porcentageChange.greaterThan(0) ? "text-green-500" : "text-red-500"}`}
           >
-            {porcentageChange.toFixed(0).toString()} %
+            {porcentageChange.toFixed(2).toString()} %
           </span>
         </div>
       </div>
