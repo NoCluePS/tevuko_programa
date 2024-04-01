@@ -9,20 +9,22 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const Stats = () => {
   const { data, isLoading } = api.stats.getAll.useQuery();
   const latestData = data?.[0];
-  const porcentageChange = useMemo(() => {
-    return latestData && data
-      ? new Decimal(latestData.retire)
-          .add(new Decimal(latestData.pijus))
-          .add(new Decimal(latestData.elze))
-          .times(100)
-          .dividedBy(
-            new Decimal(data[data.length - 1]!.retire ?? 0)
-              .add(new Decimal(data[data.length - 1]!.pijus ?? 0))
-              .add(new Decimal(data[data.length - 1]!.elze ?? 0)),
-          )
-          .minus(100)
-      : new Decimal(100);
-  }, [data, latestData]);
+  const porcentageChange = useMemo(
+    () =>
+      latestData && data
+        ? new Decimal(latestData.retire)
+            .add(new Decimal(latestData.pijus))
+            .add(new Decimal(latestData.elze))
+            .times(100)
+            .dividedBy(
+              new Decimal(data[data.length - 1]!.retire ?? 0)
+                .add(new Decimal(data[data.length - 1]!.pijus ?? 0))
+                .add(new Decimal(data[data.length - 1]!.elze ?? 0)),
+            )
+            .minus(100)
+        : new Decimal(100),
+    [data, latestData],
+  );
 
   if (isLoading) return <div>Kraunama...</div>;
 
