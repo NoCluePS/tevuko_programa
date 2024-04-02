@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CreateForm from "./CreateForm";
 import Stats from "./Stats";
 import ListTable from "./ListTable";
@@ -11,9 +11,14 @@ enum Tabs {
 }
 
 const DashboardTable = () => {
+  const [password, setPassword] = useState("");
   const [currentTab, setCurrentTab] = useState(Tabs.LIST);
 
-  return (
+  useEffect(() => {
+    setPassword(localStorage.getItem("tevuko_pass") ?? "");
+  }, []);
+
+  return password === process.env.NEXT_PUBLIC_TEVUKO_PASS ? (
     <div className="mt-3 w-[100%] max-w-[75%]">
       <div className="flex justify-center rounded-t-lg bg-gray-300">
         <div
@@ -46,6 +51,16 @@ const DashboardTable = () => {
         }
       })()}
     </div>
+  ) : (
+    <input
+      type="text"
+      className={`mt-2 rounded-md border-2 border-gray-300 p-2`}
+      placeholder="Slaptažodis"
+      onChange={(e) => {
+        setPassword(e.target.value);
+        localStorage.setItem("tevuko_pass", e.target.value);
+      }}
+    />
   );
 };
 
