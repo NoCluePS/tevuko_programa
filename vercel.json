@@ -5,7 +5,7 @@
       "headers": [
         {
           "key": "Strict-Transport-Security",
-          "value": 0
+          "value": "0"
         }
       ]
     }
