@@ -5,6 +5,20 @@
 await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+  async headers() {
+    return [
+      {
+        source: "/",
+        headers: [
+          {
+            key: "Strict-Transport-Security",
+            value: "0",
+          },
+        ],
+      },
+    ];
+  },
+};
 
 export default config;
